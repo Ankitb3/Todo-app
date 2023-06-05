@@ -14,10 +14,12 @@ import {
 import { AddIcon, SunIcon, MoonIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 const App = () => {
-  const { toggleColorMode } = useColorMode();
+const { colorMode, toggleColorMode } = useColorMode();
   const [todos, setTodos] = useState("");
   const [list, setList] = useState([]);
   const toast = useToast();
+  
+  
 
   function Addactivity() {
     if (todos === "") {
@@ -59,9 +61,12 @@ const App = () => {
             Todo List
           </Text>
         </Center>
-        <Button onClick={toggleColorMode} ml={10}>
+        {/* <Button onClick={toggleColorMode}  ml={10}>
           <SunIcon />
           <MoonIcon />
+        </Button> */}
+        <Button onClick={toggleColorMode}>
+          {colorMode === "light" ? <SunIcon /> : <MoonIcon />}
         </Button>
         <Flex mt={10}>
           <Box ml={400} width={350}>
@@ -73,11 +78,7 @@ const App = () => {
           </Box>
           <Spacer />
           <Box mr={390}>
-            <Button
-              colorScheme="blue"
-              onClick={Addactivity}
-             
-            >
+            <Button colorScheme="blue" onClick={Addactivity}>
               <AddIcon />
             </Button>
           </Box>
